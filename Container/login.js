@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!username || !password) {
@@ -17,10 +17,23 @@ const Login = () => {
     }
     console.log(username);
     console.log(password);
-    setUsername("");
-    setPassword("");
 
-    router.push("/dashboard");
+    const response = await fetch("http://35.154.208.64:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const movies = await response.json();
+    if (movies.message == "Login successful") {
+      setUsername("");
+      setPassword("");
+      router.push("/dashboard");
+    }
+
+    //
   };
 
   return (

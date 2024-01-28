@@ -1,17 +1,14 @@
-import styles from '../styles/Navbar.module.css'; 
+import Link from "next/link";
+import styles from "../styles/Navbar.module.css";
 
-const Navbar=()=>{
-return (
-    <div className={styles.navbar
-
-    }>
-<button className={styles.buttonNavbar} >
-    Add Mentee
-</button>
-
-
-
+const Navbar = () => {
+  return (
+    <div className={styles.navbar}>
+      <p className={styles.navbartext}> SkillSadhu</p>
+      <Link href="/addMenteeForm">
+        <button className={styles.buttonNavbar}>Add Mentee</button>
+      </Link>
     </div>
-)
-}
+  );
+};
 export default Navbar;
